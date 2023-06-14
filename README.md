@@ -1,7 +1,7 @@
-# egg-mp
+# egg-weixin-mp
 
-[![npm version](https://badge.fury.io/js/egg-mp.svg)](https://badge.fury.io/js/egg-mp)
-
+[![npm version](https://badge.fury.io/js/egg-weixin-mp.svg)](https://badge.fury.io/js/egg-weixin-mp)
+[该项目基于egg-mp进行修改，完善新的能力]
 [微信公众平台](https://mp.weixin.qq.com/)常规的后端服务，献给了不起的[EggJS](https://eggjs.org/zh-cn/)
 
 ## 特性
@@ -11,6 +11,7 @@
 - [X] 小程序支付
 - [X] 推送模板消息
 - [X] 检测是否含有敏感词
+- [X] 手机号快速填写
 - [ ] 生成二维码/小程序码
 - [ ] 接入在线客服消息
 

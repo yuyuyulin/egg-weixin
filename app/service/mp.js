@@ -9,6 +9,9 @@ const msgSecCheck = 'https://api.weixin.qq.com/wxa/msg_sec_check'; // 微信敏�
 const sendMsgUri =
   'https://api.weixin.qq.com/cgi-bin/message/wxopen/template/send'; // 微信服务通知
 const payUri = 'https://api.mch.weixin.qq.com/pay/unifiedorder'; // 微信统一下单
+const getPhoneUri = 'https://api.weixin.qq.com/wxa/business/getuserphonenumber'; // 微信获取手机号
+
+
 
 class MPService extends Service {
 
@@ -148,6 +151,26 @@ class MPService extends Service {
       };
     }
     return this._secondSignOrder(json);
+  }
+  /**
+   * 获取手机号
+   * @param {*} code 
+   * @returns 
+   */
+  async getPhoneNumber(code) {
+    const body = {
+      code: code,
+    };
+    const token = await this.getToken();
+    const access_token = token.access_token;
+    console.warn(`${getPhoneUri}?access_token=${access_token}`,'npm包请求的url为')
+    const res = await this.ctx.curl(`${getPhoneUri}?access_token=${access_token}`, {
+      method: 'POST',
+      contentType: 'json',
+      dataType: 'json',
+      data: body,
+    });
+    return res.data;
   }
 
   // 第一次签名

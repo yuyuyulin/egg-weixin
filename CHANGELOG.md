@@ -1,4 +1,6 @@
 # 改动历史
+## 2023-06-14, Version 1.0.03 @yuyuyulin
+ * 新增手机号快速填写能力
 
 ## 2022-10-12, Version 1.0.22 @unclexiao
  * 修复 Ticket 与 Token 获取失败无法感知
