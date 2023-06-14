@@ -1,6 +1,6 @@
 {
-  "name": "egg-weixin",
-  "version": "1.0.0",
+  "name": "egg-mp",
+  "version": "1.0.23",
   "description": "egg plugin for wechat",
   "types": "./index.d.ts",
   "eggPlugin": {
@@ -53,12 +53,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yuyuyulin/egg-weixin.git"
+    "url": "git+https://github.com/unclexiao/egg-mp.git"
   },
   "bugs": {
-    "url": "https://github.com/yuyuyulin/egg-weixin/issues"
+    "url": "https://github.com/unclexiao/egg-mp/issues"
   },
-  "homepage": "https://github.com/yuyuyulin/egg-weixin#readme",
-  "author": "yuyuyulin",
+  "homepage": "https://github.com/unclexiao/egg-mp#readme",
+  "author": "unclexiao <449129722@qq.com>",
   "license": "MIT"
 }
