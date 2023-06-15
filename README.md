@@ -28,7 +28,7 @@
 ## 安装
 
 ```bash
-$ npm i egg-mp --save
+$ npm i egg-weixin-mp --save
 ```
 
 ## 启用插件
@@ -37,7 +37,7 @@ $ npm i egg-mp --save
 // {app_root}/config/plugin.js
 exports.mp = {
   enable: true,
-  package: 'egg-mp',
+  package: 'egg-weixin-mp',
 };
 ```
 
