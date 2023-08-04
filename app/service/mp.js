@@ -10,7 +10,7 @@ const sendMsgUri =
   'https://api.weixin.qq.com/cgi-bin/message/wxopen/template/send'; // 微信服务通知
 const payUri = 'https://api.mch.weixin.qq.com/pay/unifiedorder'; // 微信统一下单
 const getPhoneUri = 'https://api.weixin.qq.com/wxa/business/getuserphonenumber'; // 微信获取手机号
-
+const getUnlimitCodeUri = 'https://api.weixin.qq.com/wxa/getwxacodeunlimit' //生成无限制小程序码
 
 
 class MPService extends Service {
@@ -163,7 +163,6 @@ class MPService extends Service {
     };
     const token = await this.getToken();
     const access_token = token.access_token;
-    console.warn(`${getPhoneUri}?access_token=${access_token}`,'npm包请求的url为')
     const res = await this.ctx.curl(`${getPhoneUri}?access_token=${access_token}`, {
       method: 'POST',
       contentType: 'json',
@@ -172,6 +171,35 @@ class MPService extends Service {
     });
     return res.data;
   }
+  /**
+   * 获取不限制的小程序码
+   * @param {String} scene 场景值，最大32个可见字符
+   * @param {String} page 默认是主页，页面 page，例如 pages/index/index，根路径前不要填加 /
+   * @param {String} env_version 代码版本号，正式版为 "release"，体验版为 "trial"，开发版为 "develop"。
+   * @param {String} is_hyaline 默认是false，是否需要透明底色，为 true 时，生成透明底色的小程序。
+   * @returns 
+   */
+  async getUnlimitCode(scene, page,env_version,is_hyaline) {
+    const body = {
+      scene: scene,
+      page: "",
+      env_version:env_version,
+      is_hyaline:is_hyaline || false,
+    };
+    console.log(body,'body参数')
+    const token = await this.getToken();
+    const access_token = token.access_token;
+    const res = await this.ctx.curl(`${getUnlimitCodeUri}?access_token=${access_token}`, {
+      method: 'POST',
+      contentType: 'json',
+      //dataType: 'json',
+      data: body,
+    });
+    console.log(res.data,'getUnlimitCode返回的数据：')
+    let image = 'data:image/jpeg;base64,' + res.data.toString('base64');
+    return image;
+  }
+  
 
   // 第一次签名
   _firstSignOrder(openid, data) {
@@ -194,6 +222,7 @@ class MPService extends Service {
       body: data.body || '未知产品-测试商品', // 应用市场上的APP名字-商品概述	
       spbill_create_ip: ctx.ip, // 支付提交用户端ip
       notify_url: data.notifyUrl || '', // 异步接收微信支付结果通知
+      attach:data.attach || '',
       trade_type: 'JSAPI',
     };
     params.sign = service.sign.getPaySign(params); // 首次签名，用于验证支付通知
