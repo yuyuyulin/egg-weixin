@@ -1,6 +1,6 @@
 {
   "name": "egg-weixin-mp",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "egg plugin for wechat",
   "types": "./index.d.ts",
   "eggPlugin": {
